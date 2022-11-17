@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/findf.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('./templates/partials/navbar.ejs')%>
+        <div class="container-fluid ps-md-0 ">
+            <div class="row g-0">
+                <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image ">
+
+
+                </div>
+
+                <div class="col-md-8 col-lg-6">
+                    <div class="login d-flex align-items-center py-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-9 col-lg-8 mx-auto">
+
+                                    <div id="form">
+                                        <!-- Sign In Form -->
+                                        <form action="/output">
+                                            <h3 class="login-heading mb-4">Welcome to M and M airport</h3>
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" id="floatingInput" name="from"
+                                                    placeholder="Enter your start place" required>
+                                                <label for="floatingInput">FROM</label>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" id="floatingPassword" name="to"
+                                                    placeholder="destination" required>
+                                                <label for="floatingPassword">TO</label>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <input type="date" class="form-control" id="floatingPassword"
+                                                    name="date" placeholder="The day u want to fly" required>
+                                                <label for="floatingPassword">DATE</label>
+                                            </div>
+                                            
+                                            
+
+                                            <div class="d-grid">
+                                                <button
+                                                    class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2"
+                                                    type="submit">FIND YOUR FLIGHT!</button>
+
+                                            </div>
+                                            <div class="errmsg">
+                                                <%if(!date_result) {%>
+                                                    <span>Please enter valid date</span>
+                                               <% }%>
+                                               <%if(!flight_result) {%>
+                                                <span>Sorry, we can"t find any flights for you</span>
+                                           <% }%>
+                                                <!-- <%=errmsg%> -->
+                                                
+                                            </div>
+                                            
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+</body>
+
+</html>

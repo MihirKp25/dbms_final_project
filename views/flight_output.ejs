@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/flight_output.css">
+    <title>Document</title>
+    
+</head>
+
+<body>
+    <%- include('./templates/partials/navbar.ejs')%>
+
+
+        <h1><span class="blue">
+            </span><span class="blue">
+            </span> <span class="yellow">FLIGHTS</pan>
+        </h1>
+        <%if(input.to==""){%>
+            <% input.to="no_value";%>
+        <%}%>
+        <%if(input.from==""){%>
+            <% input.from="no_value";%>
+        <%}%>
+        <%if(input.date==""){%>
+            <% input.date="no_value";%>
+        <%}%>
+            <form action="/airline/<%=input.to%>/<%=input.from%>/<%=input.date%>" class="mycss">
+                
+                <div class="sort_by">
+
+                    <label for="sort">Sort By</label>
+                    <select name="sort_by_cond" id="sort" >
+                        <option>Cost</option>
+                        <option>Time</option>
+                    </select>
+                </div>
+                <div class="airline">
+
+                    <label for="airline">Choose Airline</label>
+                    <select name="choose_airline" id="airline">
+    
+                       <% const unique_values=[...new Set(result3.map(data => data.airline))] %>
+    
+                            <option></option>
+                        <%for(let i=0; i<unique_values.length; i++){%>
+                            <option><%=unique_values[i]%></option>
+                            
+                                <% }%>
+                    </select>
+                </div>
+                <div class="btn">
+
+                    <button class="airline-btn" type="submit">apply changes</button>
+                </div>
+            </form>
+            
+
+
+
+        <table class="container">
+            <thead>
+                <tr>
+                    <th>
+                        <h1>Sr no.</h1>
+                    </th>
+                    <th>
+                        <h1>AIRLINE</h1>
+                    </th>
+                    <th>
+                        <h1>FLIGHT ID</h1>
+                    </th>
+                    <th>
+                        <h1>FROM</h1>
+                    </th>
+                    <th>
+                        <h1>TO</h1>
+                    </th>
+                    <th>
+                        <h1>TIME(YYYY-MM-DD HH:mm:ss)</h1>
+                    </th>
+                    <th>
+                        <h1>COST</h1>
+                    </th>
+                    <th>
+                        <h1></h1>
+                    </th>
+                    <th>
+                        <h1>No. of passengers</h1>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% let c=0 %>
+
+                <% if(result2=='Cost'){%>
+                
+                        <% results.sort(function(a, b){ %>
+                            <%  return (a.economy_cost-b.economy_cost)%>
+                            <% })%>
+                <%} else if(result2=='Time'){%>
+                        <% results.sort(function(a, b){ %>
+                            <%  return (a.time-b.time)%>
+                        <% })%>
+                 <% }%>
+                    
+
+                  
+                    
+
+                    <%for(let flight of results){%>
+
+                        <tr>
+                            <td data-th="Movie Title">
+                                <div class="extra">
+                                    <%= ++c %>
+                                </div>
+
+                            </td>
+                            <td data-th="Genre">
+                                <div class="extra">
+                                    <%=flight.airline.toUpperCase()%>
+                                </div>
+
+                            </td>
+                            <td data-th="Year">
+                                <div class="extra">
+                                    <%=flight.flight_id %>
+                                </div>
+
+                            </td>
+                            <td data-th="Year">
+                                <div class="extra">
+                                    <%=flight.from_route.toUpperCase() %>
+                                </div>
+
+                            </td>
+                            <td data-th="Year">
+                                <div class="extra">
+                                    <%=flight.to_route.toUpperCase() %>
+                                </div>
+
+                            </td>
+                            <td data-th="Gross">
+                                <div class="extra">
+                                    
+                                    <%=flight.arrival_time %>
+                                </div>
+
+                            </td>
+                            <td data-th="Gross">
+                                <div class="extra">
+                                    ₹<%=flight.economy_cost %>-₹<%=flight.first_cost %>
+                                </div>
+                            </td>
+                            <form action="/booking/<%=flight.flight_id%>/<%=flight.arrival_schedule_id%>">
+                            <td>
+                                <div id="btnd">
+                                        <span>
+                                            <input type="submit" value="book now" id="button">
+                                        </span>
+                                       
+                                    
+                                </div>
+                            </td>
+                            <td>
+                                <div id="btnd">
+                                        <span>
+                                            <input type="number" name="passengers" value="no. of passengers" id="button" min="1" max="10">
+                                           </span> 
+                                        </div>
+                                    </td>
+                                </form>
+                            
+
+                        </tr>
+
+
+                        <%}%>
+
+
+            </tbody>
+        </table>
+
+
+
+
+
+
+        <script>
+            const input = document.querySelector(".airline");
+            const btn = document.querySelector(".airline-btn");
+            btn.addEventListener("click", function () {
+                console.log(input.value)
+            })
+        </script>
+
+
+</body>
+
+</html>

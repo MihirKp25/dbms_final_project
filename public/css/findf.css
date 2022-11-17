@@ -1,0 +1,43 @@
+.login {
+    min-height: 100vh;
+}
+
+.bg-image {
+    background-image: url('https://source.unsplash.com/WEQbe2jBg40/600x1200');
+    background-size: cover;
+    background-position: center;
+    z-index: -999;
+
+}
+
+.login-heading {
+    font-weight: 300;
+}
+
+.btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+}
+
+#trial {
+    border: 2px solid red;
+    width: 800px;
+    height: 550px;
+    z-index: +99;
+    margin: auto;
+    background-color: rgba(250, 235, 215, 0.8);
+
+}
+
+.errmsg{
+    font-weight: 100;
+    /* border: 2px solid red; */
+    margin-top: 15px;
+}
+
+/* #form {
+
+    position: fixed;
+
+} */

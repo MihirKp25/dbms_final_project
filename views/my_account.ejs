@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/myaccn.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('./templates/partials/navbar.ejs')%>
+
+
+        <section class="profile_container">
+            <div class="profile_img_section">
+                <img class="profile_img-LG"
+                    src="https://cdn.idntimes.com/content-images/community/2020/10/122163576-262420488513552-863075192792965334-n-f95e3dd6d25d3618eb9f1b3b9bcc5796.jpg" />
+                
+            </div>
+
+            <div class="profile_desc_section">
+                <h2>
+                    <%if(results.length!=0){%>
+                    <%=results[0].username.toUpperCase()%>
+                    <%}%>
+                </h2>
+
+                <h4>MY-FLIGHTS</h4>
+                <p class="description">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                <h5>Sr.no</h5>
+                            </th>
+                            <th scope="col">
+                                <h5>Ticket</h5>
+                            </th>
+                            <th scope="col">
+                                <h5>Flight id </h5>
+                            </th>
+                            <th scope="col">
+                                <h5>Airline name</h5>
+                            </th>
+                            <th scope="col">
+                                <h5>From</h5>
+                            </th>
+                            <th scope="col">
+                                <h5>To</h5>
+                            </th>
+                            <th scope="col">
+                                <h5>Time</h5>
+                            </th>
+                            <th scope="col">
+                                <h5>cancellation</h5>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% let c=0 %>
+
+
+                            <%for(let flight of results){%>
+
+
+                                <tr>
+                                    <td data-label="Account">
+                                        <div class="extra">
+                                            <%= ++c %>
+                                        </div>
+                                    </td>
+                                    <td data-label="Ticket">
+                                        <div class="extra">
+                                            <form action="/showticket/<%=flight.flight_id%>/<%=flight.to_route%>/<%=flight.from_route%>/<%=flight.airline%>/<%=flight.username%>/<%=flight.terminal_of_arrival%>/<%=flight.economy_cost%>/<%=flight.business_cost%>/<%=flight.first_cost%>/<%=flight.class%>/<%=flight.arrival_time%>">
+                    
+                                                <button type="submit">show ticket</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                    <td data-label="Due Date">
+                                        <div class="extra">
+                                            <%=flight.flight_id %>
+                                        </div>
+                                    </td>
+                                    <td data-label="Amount">
+                                        <div class="extra">
+                                            <%=flight.airline.toUpperCase() %>
+                                        </div>
+                                    </td>
+                                    <td data-label="Amount">
+                                        <div class="extra">
+                                            <%=flight.from_route.toUpperCase()  %>
+                                        </div>
+                                    </td>
+                                    <td data-label="Amount">
+                                        <div class="extra">
+                                            <%=flight.to_route.toUpperCase()  %>
+                                        </div>
+                                    </td>
+                                    <td data-label="Period">
+                                        <div class="extra">
+                                            <%=flight.arrival_time %>
+                                        </div>
+                                    </td>
+                                    <td data-label="cancel">
+                                        <div class="extra">
+                                            <form action="/cancel_ticket/<%=flight.ticket_id%>">
+                                                <button type="submit">Cancel Ticket</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                                <%}%>
+
+
+
+
+                    </tbody>
+                </table>
+                </p>
+
+
+            </div>
+
+        </section>
+
+        <div class="info">
+            <ul>
+                <li>
+                    <div class="link_img_wrapper">
+                        <img class="link_img"
+                            src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/round-pushpin_1f4cd.png"
+                            alt="">
+                    </div>
+                    <p>
+                        <%if(results.length!=0){%>
+
+                            <%=results[0].address%>
+                        <%}%>
+                    </p>
+                </li>
+                <li>
+                    <div class="link_img_wrapper">
+                        <img class="link_img"
+                            src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/speaking-head_1f5e3-fe0f.png"
+                            alt="">
+                    </div>
+                    <p>
+                        <%if(results.length!=0){%>
+                        <%=results[0].country%>
+                        <%}%>
+                    </p>
+                </li>
+                <li>
+                    <div class="link_img_wrapper">
+                        <img class="link_img"
+                            src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/samsung/265/globe-with-meridians_1f310.png"
+                            alt="">
+                    </div>
+                    <p>
+                        <%if(results.length!=0){%>
+                        <%=results[0].email%>
+                        <%}%>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <div id="button">
+            <form action="/new" method="get">
+                <button type="submit" id="fd">
+                    UPDATE YOUR ACCOUNT
+                </button>
+            </form>
+
+        </div>
+</body>
+
+</html>

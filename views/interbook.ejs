@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/interbook.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <%for(let i=0; i< obj.length ; i++){%>
+    <div class="bg">
+        
+    </div>
+
+
+    <div class="box">
+        <ul class="left">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+        <ul class="right">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+            <div class="ticket">
+                <span class="airline"><%=result[0].airline.toUpperCase()%></span>
+            <span class="airline airlineslip"><%=result[0].airline.toUpperCase()%></span>
+            <span class="boarding">Boarding pass</span>
+            <div class="content">
+                <span class="jfk"><%=result[0].from_route.slice(0,3).toUpperCase()%></span>
+                <span class="plane">
+                    <?xml version="1.0" ?><svg clip-rule="evenodd" fill-rule="evenodd" height="60" width="60"
+                        image-rendering="optimizeQuality" shape-rendering="geometricPrecision"
+                        text-rendering="geometricPrecision" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="#222">
+                            <line fill="none" stroke-linecap="round" stroke-width="30" x1="300" x2="55" y1="390"
+                                y2="390" />
+                            <path
+                                d="M98 325c-9 10 10 16 25 6l311-156c24-17 35-25 42-50 2-15-46-11-78-7-15 1-34 10-42 16l-56 35 1-1-169-31c-14-3-24-5-37-1-10 5-18 10-27 18l122 72c4 3 5 7 1 9l-44 27-75-15c-10-2-18-4-28 0-8 4-14 9-20 15l74 63z"
+                                fill="#222" stroke-linejoin="round" stroke-width="10" />
+                        </g>
+                    </svg>
+                </span>
+                <span class="sfo"><%=result[0].to_route.slice(0,3).toUpperCase()%></span>
+
+                <span class="jfk jfkslip"><%=result[0].from_route.slice(0,3).toUpperCase()%></span>
+                <span class="plane planeslip">
+                    <?xml version="1.0" ?><svg clip-rule="evenodd" fill-rule="evenodd" height="50" width="50"
+                        image-rendering="optimizeQuality" shape-rendering="geometricPrecision"
+                        text-rendering="geometricPrecision" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="#222">
+                            <line fill="none" stroke-linecap="round" stroke-width="30" x1="300" x2="55" y1="390"
+                                y2="390" />
+                            <path
+                                d="M98 325c-9 10 10 16 25 6l311-156c24-17 35-25 42-50 2-15-46-11-78-7-15 1-34 10-42 16l-56 35 1-1-169-31c-14-3-24-5-37-1-10 5-18 10-27 18l122 72c4 3 5 7 1 9l-44 27-75-15c-10-2-18-4-28 0-8 4-14 9-20 15l74 63z"
+                                fill="#222" stroke-linejoin="round" stroke-width="10" />
+                        </g>
+                    </svg>
+                </span>
+                <span class="sfo sfoslip"><%=result[0].to_route.slice(0,3).toUpperCase()%></span>
+                <div class="sub-content">
+                    <span class="watermark"><%=result[0].airline%></span>
+                    <span class="name">PASSENGER NAME<br><span><%=obj[`${i}`].name%></span></span>
+                    <span class="flight">FLIGHT_ID&deg;<br><span><%=result[0].flight_id%></span></span>
+                    <span class="gate">TERMINAL<br><span><%=result[0].terminal%></span></span>
+                    <span class="seat">COST<br><span><%if(obj[`${i}`].class=='business'){%>
+
+                        <%=result[0].business_cost%></span></span>
+                        <%}else if(obj[`${i}`].class=='economy'){%>
+                        
+                            
+                        <%=result[0].economy_cost%></span></span>
+                        <%}else if(obj[`${i}`].class=='first'){%>
+                            
+
+                            <%=result[0].first_cost%></span></span>
+                            <%}else{%>
+                            <%}%></span></span>
+                            <span class="boardingtime">BOARDING TIME<br><span><%=result[0].arrival_time%></span></span>
+                            
+                            <span class="flight flightslip">FLIGHT_ID&deg;<br><span><%=result[0].flight_id%></span></span>
+                    <span class="seat seatslip">COST<br><span>
+                        <%if(obj[`${i}`].class=='business'){%>
+
+                            <%=result[0].business_cost%></span></span>
+                            <%}else if(obj[`${i}`].class=='economy'){%>
+                                
+
+                            <%=result[0].economy_cost%></span></span>
+                            <%}else if(obj[`${i}`].class=='first'){%>
+                                
+                                
+                            <%=result[0].first_cost%></span></span>
+                            <%}else{%>
+                                <%}%>
+                                
+                                <span class="name nameslip">PASSENGER NAME<br><span><%=obj[`${i}`].name%></span></span>
+                            </div>
+                        </div>
+                        <!-- <div class="barcode"></div>
+                            <div class="barcode slip"></div> -->
+                        </div>
+                        
+        <div class="con">
+            
+            <form  action="/bookticket/<%=result[0].flight_id%>/<%=result[0].arrival_schedule_id%>/<%=obj.name%>/<%=obj.email%>/<%=obj.mobile_no%>/<%=obj.aadhar_no%>/<%=obj.class%>">
+                <button type="submit" class="mybtn">
+                    Confirm
+                </button>
+            </form>
+        </div>
+        <div class="chalaak" style="">
+            <div class="len"><%=obj.length%></div>
+            <% for(let i = 0; i < obj.length; i++) { %>
+                <p>
+                   <%=JSON.stringify(obj[i])%>
+                </p>
+            <%}%>
+        </div>
+        <%}%>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js"></script>
+    <script type="text/javascript">
+        const data = document.querySelector(".chalaak");
+        const len = document.querySelector(".len").textContent;
+        console.log(len);
+        let arr = [];
+        for(let i = 1; i <= len; i++){
+            arr.push(data.children[i].innerHTML)
+        }
+        for(let i = 0; i < len; i++){
+            console.log(JSON.parse(arr[i]));
+        }
+        console.log(arr);
+
+        axios.post("http://localhost:3000/confirmation", arr).then(response=>{
+            console.log(response);
+        }).catch(err=>{
+            console.log(err);
+        })
+    </script>
+</body>
+
+</html>

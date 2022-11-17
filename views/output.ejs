@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>output</title>
+</head>
+
+<body>
+    <h1>FROM :<%= results[0].from_route %> TO :<%= results[0].to_route %>
+    </h1>
+    <h1>
+        <%=results[0].flight_id%>
+    </h1>
+    <%for(let values of results){%>
+        <table>
+            <tr>
+                <td>
+                    <h3>
+                        <%=values.flight_id%>
+                    </h3>
+                </td>
+                <td>
+                    <h3>
+                        <%=values.airline%>
+                    </h3>
+                </td>
+                <td>
+                    <h3>
+                        <%=values.arrival_time.%>
+                    </h3>
+                </td>
+                <td>
+                    <h3>
+                        <%=values.arrival_time.toLocaleString('default', {month: 'long' })%>
+                    </h3>
+                </td>
+                <td>
+                    <h3>
+                        <%=values.arrival_time.getFullYear()%>
+                    </h3>
+                </td>
+                <td>
+                    <h3>
+                        <%=values.duration%>
+                    </h3>
+                </td>
+            </tr>
+        </table>
+
+        <%}%>
+
+</body>
+
+</html>

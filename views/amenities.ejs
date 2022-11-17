@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/ammenities.css">
+    <title>Document</title>
+</head>
+<header>
+    <%- include('./templates/partials/navbar.ejs')%>
+</header>
+
+<body class="bgimg">
+    <div id="black">
+
+    </div>
+    <div class="head">
+
+        <h1>Review section</h1>
+    </div>
+    <form action="/review_search" class="form">
+
+        <div class="">
+
+            <label for="search_by_airline" class="a1">search by airline</label>
+            <input type="text" id="search_by_airline" name="airline">
+        </div>
+        <div class="">
+
+            <label for="search_by_username" class="a1">search by username</label>
+            <input type="text" id="search_by_username" name="username">
+        </div>
+
+        
+
+        <button type="submit" >apply changes</button>
+
+
+    </form>
+
+    <table class="tb123">
+        <tr>
+            <td class="col">
+                Airline
+            </td>
+            <td class="col">
+                Review
+            </td>
+            <td class="col">
+                Username
+            </td>
+            <td class="col">
+                Rating
+            </td>
+        </tr>
+        <% for(let item of result){%>
+            <tr>
+                <td class="col1">
+                    <%=item.airline%>
+                </td>
+                <td class="col1">
+                    <%= item.review%>
+                </td>
+                <td class="col1">
+                    <%=item.username%>
+                </td>
+                <td class="col1">
+                    <%for(let i=0; i<item.rating; i++){%>
+                        <span>⭐</span>
+
+                    <%}%>
+                </td>
+            </tr>
+            <% }%>
+    </table>
+
+   
+
+    <div class="re">
+        <form action="/newreview" method="post" class="review">
+            <div id="airline"> <input type="text" placeholder="Airline" name="airline" class="input" /></div>
+            <div id="review"> <textarea placeholder="Type your review here" tabindex="15"class="input" required name="review"></textarea></div>
+            <div id="username"><input type="text" placeholder="username" name="username" class="input" /></div>
+            <div id="rating"><input type="number" min="0" max="5" name="rating" class="input" />⭐</div>
+    
+            <button type="submit">add review</button>
+        </form>
+
+    </div>
+
+
+
+
+
+
+</body>
+
+</html>
